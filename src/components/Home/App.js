@@ -19,7 +19,7 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   return <>
-<GoogleOAuthProvider clientId='344445140675-3a0p8cokkeqfuu84e58eg188a6nle1fn.apps.googleusercontent.com' >
+<GoogleOAuthProvider clientId='' >
 <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#home">Coding Ninjas</Navbar.Brand>
