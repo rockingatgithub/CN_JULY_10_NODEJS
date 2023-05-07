@@ -1,14 +1,20 @@
-import React from  "react"
+import React, { useContext } from  "react"
+
+export const theme = React.createContext({
+    color: 'blue'
+})
 class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        state = {
+        this.state = {
             name: '',
             roll: '',
             token: null,
         }
     }
+
+    
 
     nameChangeHandler = (value) => {
         this.setState({name: value})
@@ -75,6 +81,12 @@ class Login extends React.Component {
 
             { this.state.token && <button onClick={this.getStudent} > Get student  </button>  }
 
+
+            <theme.Provider value={{color: 'red'}} >
+                <Component1/>
+            </theme.Provider>
+            
+
         </div>
     }
 
@@ -83,3 +95,30 @@ class Login extends React.Component {
 
 
 export default Login
+
+
+
+const Component1 = (props) => {
+
+    return <div>
+        Component1
+        <Component2/>
+
+    </div>
+
+}
+
+
+const Component2 = (props) => {
+
+    const value = useContext(theme)
+
+    return <div>
+        Component2
+
+        <h1>{value.color}</h1>
+
+        
+    </div>
+
+}

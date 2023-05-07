@@ -12,14 +12,16 @@ import Profile from '../Profile'
 import InterviewsList from '../InterviewList'
 import LoginForm from '../LoginForm'
 import { useState } from 'react';
+import Login from '../Login';
 
 
 const App = () => {
 
-  const [user, setUser] = useState(null)
-
   return <>
-<GoogleOAuthProvider clientId='' >
+
+  {/* <Login/> */}
+
+<GoogleOAuthProvider clientId='344445140675-3a0p8cokkeqfuu84e58eg188a6nle1fn.apps.googleusercontent.com' >
 <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#home">Coding Ninjas</Navbar.Brand>
@@ -35,8 +37,8 @@ const App = () => {
     </Navbar>
 
   <Routes>
-    <Route path='/' element={<LoginForm setUser={setUser} />} />
-    <Route path='/interview' element={<InterviewsList user={user} />} />
+    <Route path='/' element={<LoginForm />} />
+    <Route path='/interview' element={<InterviewsList />} />
     <Route path='/profile' element={<Profile/>} />
   </Routes>
   </GoogleOAuthProvider>

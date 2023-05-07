@@ -16,6 +16,8 @@ function reducers (state=initialState, action) {
             return { ...state, counter: state.counter + action.data  }
         case "DEC_BY":
             return { ...state, counter: state.counter - action.data  }
+        case "LOGIN": 
+            return { ...state, user: action.data, isLoggedIn: true }
     
         default:
             return state

@@ -6,71 +6,32 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import './login.module.css'
 import Clock from '../test';
+import { connect, useDispatch } from 'react-redux';
+import { googleLogin, loginUser } from '../actions';
 
 const LoginForm = (props) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
   
     const loginHandler = async (event) => {
-  
       event.preventDefault()
-  
-      const loginResponse = await fetch('http://localhost:8000/auth/jwt', 
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          email, password
-        }),
-  
-        headers: {
-          'Content-Type': 'application/json'
-        }
-  
-      })
-  
-      const parsedResponse = await loginResponse.json()
-      console.log("the parsedresponse", parsedResponse)
-  
-      if(loginResponse.status === 200) {
-        props.setUser(parsedResponse.user)
-        Cookies.set('user', parsedResponse.token)
-        navigate('/interview')
-      }
-  
+      dispatch(loginUser(email, password))
+      navigate('/interview')
     }
 
     const googleOnSuccessHandler = async (credentialResponse) => {
-
-      // console.log(credentialResponse.credential)
-
-      if(credentialResponse.credential){
-          const response = await fetch('http://localhost:8000/auth/google', {
-          method: 'POST',
-          body: JSON.stringify({token: credentialResponse.credential}),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-
-        const loginResponse = await response.json()
-        console.log("The response", loginResponse)
-        if(response.status === 200) {
-          props.setUser(loginResponse.user)
-          Cookies.set('user', loginResponse.token)
+          dispatch(googleLogin(credentialResponse))
           navigate('/interview')
-        }
-      }
-
     }
-  
   
     return  <>
   
       <h3 id='login-heading' > Login Form </h3>
 
-      <Clock/>
+      {/* <Clock/> */}
   
       <Form id='login-form' onSubmit={loginHandler} >
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -89,8 +50,6 @@ const LoginForm = (props) => {
           Submit
         </Button>
 
-        
-
         <GoogleLogin
           onSuccess={credentialResponse => 
             googleOnSuccessHandler(credentialResponse)
@@ -108,5 +67,9 @@ const LoginForm = (props) => {
   }
   
 
+  const mapStateToProps = (state) => {
+    return { main: state }
+  }
 
-  export default LoginForm
+
+  export default connect(mapStateToProps)(LoginForm)

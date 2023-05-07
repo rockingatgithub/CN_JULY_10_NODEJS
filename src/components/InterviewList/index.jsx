@@ -2,7 +2,7 @@ import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 import Button from "react-bootstrap/esm/Button"
 import { connect } from "react-redux"
-import { decreaseBy, increaseBy } from "../actions"
+import ChatBox from "../ChatBox"
 
 const InterviewsList = (props) => {
 
@@ -34,7 +34,7 @@ const InterviewsList = (props) => {
     const applyInterviewHandler = async (interviewID) => {
 
 
-      const response = await fetch('http://localhost:8000/interview/assign/' + interviewID + '/' + props.user._id )
+      const response = await fetch('http://localhost:8000/interview/assign/' + interviewID + '/' + props.main.user._id )
       const parsedResponse = await response.json()
 
       if (response.status === 200) {
@@ -43,27 +43,7 @@ const InterviewsList = (props) => {
 
     }
 
-    console.log("the store props", props.main)
-
-    const increaseCounter = () => {
-      props.dispatch(increaseBy(40))
-    }
-    
-    const decreaseCounter = () => {
-      props.dispatch(decreaseBy(30))
-    }
-  
     return <>
-
-      <div>
-        <h4> Counter section </h4>
-
-        Counter value:- {props.main.counter}
-        <br/>
-        <Button onClick={increaseCounter} > + </Button>
-        <Button onClick={decreaseCounter} > - </Button>
-
-      </div>
 
       <h3> Interview List </h3>
       <ul>{
@@ -79,6 +59,7 @@ const InterviewsList = (props) => {
           </li>
         )
       }</ul>
+      <ChatBox/>
     </>
   
   }
