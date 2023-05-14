@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CN_JULY_10_NODEJS/static/css/main.a93e7189.css",
+    "main.js": "/CN_JULY_10_NODEJS/static/js/main.1e979a78.js",
+    "index.html": "/CN_JULY_10_NODEJS/index.html",
+    "main.a93e7189.css.map": "/CN_JULY_10_NODEJS/static/css/main.a93e7189.css.map",
+    "main.1e979a78.js.map": "/CN_JULY_10_NODEJS/static/js/main.1e979a78.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a93e7189.css",
+    "static/js/main.1e979a78.js"
+  ]
+}
