@@ -9,7 +9,7 @@ const Profile = (props) => {
 
         async function getStudent () {
 
-            const student = await fetch('http://localhost:8000/student', {
+            const student = await fetch('https://calm-gold-monkey-fez.cyclic.app/student', {
             headers: {
                 Authorization: 'Bearer ' + Cookies.get('user')
               }

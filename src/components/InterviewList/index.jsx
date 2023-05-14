@@ -2,7 +2,7 @@ import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 import Button from "react-bootstrap/esm/Button"
 import { connect } from "react-redux"
-import ChatBox from "../ChatBox"
+// import ChatBox from "../ChatBox"
 
 const InterviewsList = (props) => {
 
@@ -14,7 +14,7 @@ const InterviewsList = (props) => {
   
         // console.log("it runs on mount")
   
-        const interviews = await fetch('http://localhost:8000/interview', {
+        const interviews = await fetch('https://calm-gold-monkey-fez.cyclic.app/interview', {
           headers: {
             Authorization: 'Bearer ' + Cookies.get('user')
           }
@@ -34,7 +34,7 @@ const InterviewsList = (props) => {
     const applyInterviewHandler = async (interviewID) => {
 
 
-      const response = await fetch('http://localhost:8000/interview/assign/' + interviewID + '/' + props.main.user._id )
+      const response = await fetch('https://calm-gold-monkey-fez.cyclic.app/interview/assign/' + interviewID + '/' + props.main.user._id )
       const parsedResponse = await response.json()
 
       if (response.status === 200) {
@@ -59,7 +59,7 @@ const InterviewsList = (props) => {
           </li>
         )
       }</ul>
-      <ChatBox/>
+      {/* <ChatBox/> */}
     </>
   
   }

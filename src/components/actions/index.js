@@ -7,7 +7,7 @@ import Cookies from "js-cookie"
 export const loginUser =  (email, password)  => {
 
   return async ( dispatch, getState ) => {
-    const loginResponse = await fetch('http://localhost:8000/auth/jwt', 
+    const loginResponse = await fetch('https://calm-gold-monkey-fez.cyclic.app/auth/jwt', 
     {
       method: 'POST',
       body: JSON.stringify({
@@ -50,7 +50,7 @@ export const googleLogin = (credentialResponse) => {
     // console.log(credentialResponse.credential)
 
     if(credentialResponse.credential){
-        const response = await fetch('http://localhost:8000/auth/google', {
+        const response = await fetch('https://calm-gold-monkey-fez.cyclic.app/auth/google', {
         method: 'POST',
         body: JSON.stringify({token: credentialResponse.credential}),
         headers: {
