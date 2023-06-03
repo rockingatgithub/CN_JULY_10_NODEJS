@@ -1,5 +1,6 @@
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
+import { API_BASE_URL } from "../../constant"
 
 const Profile = (props) => {
 
@@ -9,7 +10,7 @@ const Profile = (props) => {
 
         async function getStudent () {
 
-            const student = await fetch('https://calm-gold-monkey-fez.cyclic.app/student', {
+            const student = await fetch(API_BASE_URL + '/student', {
             headers: {
                 Authorization: 'Bearer ' + Cookies.get('user')
               }

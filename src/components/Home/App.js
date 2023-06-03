@@ -13,6 +13,8 @@ import InterviewsList from '../InterviewList'
 import LoginForm from '../LoginForm'
 import { useState } from 'react';
 import Login from '../Login';
+import SignupForm from '../SignupForm';
+import ToDo from '../Todo';
 
 
 const App = () => {
@@ -21,7 +23,7 @@ const App = () => {
 
   {/* <Login/> */}
 
-<GoogleOAuthProvider clientId='344445140675-3a0p8cokkeqfuu84e58eg188a6nle1fn.apps.googleusercontent.com' >
+<GoogleOAuthProvider clientId='' >
 <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#home">Coding Ninjas</Navbar.Brand>
@@ -30,7 +32,10 @@ const App = () => {
           <Nav className="me-auto">
             <Nav.Link> <Link to='/profile' > Go To Dashboard </Link> </Nav.Link>
             <Nav.Link> <Link to='/interview' > Go To Interviews </Link> </Nav.Link> 
-            <Nav.Link>  <Link to='/' > Home </Link> </Nav.Link> 
+            <Nav.Link>  <Link to='/' > Home </Link> </Nav.Link>
+            <Nav.Link>  <Link to='/signup' > Singup </Link> </Nav.Link> 
+            <Nav.Link>  <Link to='/todo' > ToDo </Link> </Nav.Link> 
+
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -40,6 +45,10 @@ const App = () => {
     <Route path='/' element={<LoginForm />} />
     <Route path='/interview' element={<InterviewsList />} />
     <Route path='/profile' element={<Profile/>} />
+    <Route path='/signup' element={<SignupForm/>} />
+    <Route path='/todo' element={<ToDo/>} />
+
+
   </Routes>
   </GoogleOAuthProvider>
   </>

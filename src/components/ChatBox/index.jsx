@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import {io} from 'socket.io-client'
+import { API_BASE_URL } from '../../constant'
 
-const socket = io('https://calm-gold-monkey-fez.cyclic.app')
+const socket = io(API_BASE_URL)
 
 
 const ChatBox = (props) => {

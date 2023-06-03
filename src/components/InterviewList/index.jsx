@@ -1,40 +1,52 @@
 import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 import Button from "react-bootstrap/esm/Button"
-import { connect } from "react-redux"
+import { connect, useDispatch, useSelector } from "react-redux"
+import { API_BASE_URL } from "../../constant"
+import { getInterviews } from "../features/interview"
 // import ChatBox from "../ChatBox"
 
 const InterviewsList = (props) => {
 
-    const [ interviews, setInterviews ] = useState([])
-  
+    // const [ interviews, setInterviews ] = useState([])
+    
+
+    const interviews = useSelector(state => state.interviews)
+    const dispatch = useDispatch()
+
     useEffect(() => {
+
+      dispatch(getInterviews())
+
+    })
+  
+    // useEffect(() => {
       
-      async function getInterviews () {
+    //   async function getInterviews () {
   
-        // console.log("it runs on mount")
+    //     // console.log("it runs on mount")
   
-        const interviews = await fetch('https://calm-gold-monkey-fez.cyclic.app/interview', {
-          headers: {
-            Authorization: 'Bearer ' + Cookies.get('user')
-          }
-        })
+    //     const interviews = await fetch(API_BASE_URL + '/interview', {
+    //       headers: {
+    //         Authorization: 'Bearer ' + Cookies.get('user')
+    //       }
+    //     })
   
-        const parsedResponse = await interviews.json()
-        console.log("the interviews", parsedResponse)
+    //     const parsedResponse = await interviews.json()
+    //     console.log("the interviews", parsedResponse)
   
-        if(interviews.status === 200)
-          setInterviews(parsedResponse.data)
+    //     if(interviews.status === 200)
+    //       setInterviews(parsedResponse.data)
   
-      }
-      getInterviews()
+    //   }
+    //   getInterviews()
   
-    }, [])
+    // }, [])
 
     const applyInterviewHandler = async (interviewID) => {
 
 
-      const response = await fetch('https://calm-gold-monkey-fez.cyclic.app/interview/assign/' + interviewID + '/' + props.main.user._id )
+      const response = await fetch(API_BASE_URL + '/interview/assign/' + interviewID + '/' + props.main.user._id )
       const parsedResponse = await response.json()
 
       if (response.status === 200) {
@@ -47,7 +59,7 @@ const InterviewsList = (props) => {
 
       <h3> Interview List </h3>
       <ul>{
-        interviews.map((interview) => 
+        (interviews|| [])?.map((interview) => 
           <li key={interview._id}>
                 <h3>{interview.role} - {interview.company}</h3>
                 <div>

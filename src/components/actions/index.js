@@ -3,15 +3,43 @@
 // 2. It's pure JS function.
 
 import Cookies from "js-cookie"
+import { API_BASE_URL } from "../../constant"
 
 export const loginUser =  (email, password)  => {
 
   return async ( dispatch, getState ) => {
-    const loginResponse = await fetch('https://calm-gold-monkey-fez.cyclic.app/auth/jwt', 
+    const loginResponse = await fetch(API_BASE_URL + '/auth/jwt', 
     {
       method: 'POST',
       body: JSON.stringify({
         email, password
+      }),
+
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+
+    const parsedResponse = await loginResponse.json()
+    console.log("the parsedresponse", parsedResponse)
+
+    if(loginResponse.status === 200) {
+      Cookies.set('user', parsedResponse.token)
+       dispatch(setUser(parsedResponse.user))
+    }
+
+  }
+}
+
+export const signupUser =  (name, email, password)  => {
+
+  return async ( dispatch, getState ) => {
+    const loginResponse = await fetch(API_BASE_URL + '/student', 
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email, password, name
       }),
 
       headers: {
@@ -50,7 +78,7 @@ export const googleLogin = (credentialResponse) => {
     // console.log(credentialResponse.credential)
 
     if(credentialResponse.credential){
-        const response = await fetch('https://calm-gold-monkey-fez.cyclic.app/auth/google', {
+        const response = await fetch(API_BASE_URL + '/auth/google', {
         method: 'POST',
         body: JSON.stringify({token: credentialResponse.credential}),
         headers: {

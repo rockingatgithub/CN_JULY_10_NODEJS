@@ -9,7 +9,7 @@ import Clock from '../test';
 import { connect, useDispatch } from 'react-redux';
 import { googleLogin, loginUser } from '../actions';
 
-const LoginForm = (props) => {
+const SignupForm = (props) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -20,7 +20,7 @@ const LoginForm = (props) => {
   
     const loginHandler = async (event) => {
       event.preventDefault()
-      dispatch(loginUser(email, password))
+      dispatch(loginUser(name, email, password))
       navigate('/interview')
     }
 
@@ -36,6 +36,11 @@ const LoginForm = (props) => {
       {/* <Clock/> */}
   
       <Form id='login-form' onSubmit={loginHandler} >
+        
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Name</Form.Label>
+          <Form.Control value={name} onChange={event => setName(event.target.value)}  type="email" placeholder="Enter email" />
+        </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -75,4 +80,4 @@ const LoginForm = (props) => {
   }
 
 
-  export default connect(mapStateToProps)(LoginForm)
+  export default connect(mapStateToProps)(SignupForm)

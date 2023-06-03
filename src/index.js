@@ -8,15 +8,15 @@ import { applyMiddleware, createStore } from 'redux'
 import reducers from './components/reducers';
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
+import store from './components/reduxToolkit'
 
-const store = createStore(reducers, applyMiddleware(thunk))
+// const store = createStore(reducers, applyMiddleware(thunk))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     
     <Provider store={store} >
 
-    
         <BrowserRouter>
             <App />
         </BrowserRouter>

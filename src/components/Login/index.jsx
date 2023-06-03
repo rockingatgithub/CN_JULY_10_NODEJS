@@ -55,7 +55,7 @@ class Login extends React.Component {
 
     getStudent = async () => {
 
-        const response = await fetch('http://localhost:8001/student', {
+        const response = await fetch('http://localhost:8000/student', {
             headers: {
                 "Authorization": "Bearer " + this.state.token
             }
