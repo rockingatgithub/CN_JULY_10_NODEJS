@@ -9,7 +9,4 @@ export default configureStore({
       interviews: interviewReducer
   },
   devTools: true,
-  middleware: getDefaultMiddleware => getDefaultMiddleware({
-      thunk: true
-  })
 });

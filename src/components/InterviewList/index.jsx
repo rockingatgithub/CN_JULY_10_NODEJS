@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import Button from "react-bootstrap/esm/Button"
 import { connect, useDispatch, useSelector } from "react-redux"
 import { API_BASE_URL } from "../../constant"
-import { getInterviews } from "../features/interview"
+import { fetchContent } from "../features/interview"
 // import ChatBox from "../ChatBox"
 
 const InterviewsList = (props) => {
@@ -11,14 +11,14 @@ const InterviewsList = (props) => {
     // const [ interviews, setInterviews ] = useState([])
     
 
-    const interviews = useSelector(state => state.interviews)
+    const interviews = useSelector(state => state.interviews.interviews)
     const dispatch = useDispatch()
 
     useEffect(() => {
 
-      dispatch(getInterviews())
+      dispatch(fetchContent())
 
-    })
+    }, [dispatch])
   
     // useEffect(() => {
       
